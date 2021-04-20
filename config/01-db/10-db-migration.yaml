@@ -24,7 +24,7 @@ spec:
     spec:
       containers:
         - name: db-migration
-          image: quay.io/tekton-hub/db-migration
+          image: uk.icr.io/tekton/hub/db-migration
           env:
             - name: POSTGRES_HOST
               value: db

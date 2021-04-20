@@ -18,7 +18,7 @@ spec:
     spec:
       containers:
         - name: swagger
-          image: quay.io/tekton-hub/swagger
+          image: uk.icr.io/tekton/hub/swagger
           env:
             - name: API_URL
               valueFrom:
