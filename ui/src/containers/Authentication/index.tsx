@@ -1,5 +1,5 @@
 import React from 'react';
-import GitHubLogin from 'react-github-login';
+import GitHubLogin from 'react-ghe-login';
 import { useHistory } from 'react-router-dom';
 import { observer } from 'mobx-react';
 import { Card, CardBody, CardHeader, AlertVariant } from '@patternfly/react-core';
@@ -35,6 +35,7 @@ const Authentication: React.FC = observer(() => {
             redirectUri=""
             onSuccess={onSuccess}
             onFailure={user.onFailure}
+            host="https://github.ibm.com"
           />
         </CardBody>
       </Card>

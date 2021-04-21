@@ -81,7 +81,11 @@ func (r *request) authenticate(code string) (*auth.AuthenticateResult, error) {
 
 	// gets user details from github using the access_token
 	oauthClient := r.oauth.Client(context.Background(), token)
-	ghClient := github.NewClient(oauthClient)
+	ghClient, err := github.NewEnterpriseClient("https://api.myghe.com", "https://upload.myghe.com", oauthClient)
+	if err != nil {
+		r.log.Error(err)
+		return nil, internalError
+	}
 	ghUser, _, err := ghClient.Users.Get(context.Background(), "")
 	if err != nil {
 		r.log.Error(err)

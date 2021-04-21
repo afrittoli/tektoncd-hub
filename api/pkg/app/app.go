@@ -1,4 +1,4 @@
-// Copyright © 2020 The Tekton Authors.
+// copyright © 2020 The Tekton Authors.
 //
 // Licensed under the Apache License, Version 2.0 (the "License");
 // you may not use this file except in compliance with the License.
@@ -29,7 +29,6 @@ import (
 	"go.uber.org/zap"
 	"go.uber.org/zap/zapcore"
 	"golang.org/x/oauth2"
-	"golang.org/x/oauth2/github"
 	"gorm.io/driver/postgres"
 	"gorm.io/gorm"
 	"maze.io/x/duration"
@@ -382,10 +381,15 @@ func initOAuthConfig() (*oauth2.Config, error) {
 		return nil, fmt.Errorf("no GH_CLIENT_SECRET environment variable defined")
 	}
 
+	gheEndpoint := oauth2.Endpoint{
+		AuthURL:  "https://myghe.com/login/oauth/authorize",
+		TokenURL: "https://myghe.com/login/oauth/access_token",
+	}
+
 	conf := &oauth2.Config{
 		ClientID:     clientID,
 		ClientSecret: clientSecret,
-		Endpoint:     github.Endpoint,
+		Endpoint:     gheEndpoint,
 	}
 	return conf, nil
 }
